@@ -33,7 +33,7 @@ services:
     containerName: genai-service
     image: sciderus/spring-petclinic-genai-service
     tag: latest
-    port: 8082
+    port: 8084
 
   - name: vets-service
     containerName: vets-service
@@ -45,7 +45,7 @@ services:
     containerName: visits-service
     image: sciderus/spring-petclinic-visits-service
     tag: latest
-    port: 8084
+    port: 8082
 
 ingress:
   enabled: true
