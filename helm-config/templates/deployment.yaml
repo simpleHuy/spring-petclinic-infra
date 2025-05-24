@@ -7,14 +7,14 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .containerName }}
+      app: {{ .name }}
   template:
     metadata:
       labels:
         app: {{ .name }}
     spec:
       containers:
-        - name: {{ .containerName }}
+        - name: {{ .name }}
           image: {{ .image }}:{{ .tag }}
           ports:
             - containerPort: {{ .port }}
