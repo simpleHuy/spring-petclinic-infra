@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: petclinic-staging
+  namespace: staging
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/simpleHuy/petclinic-helm
+    targetRevision: v1.2.3 # tag được tạo bởi Jenkins
+    path: .
+    helm:
+      values: |
+        {{- toYaml .Values | nindent 8 }}
+        global:
+          imageTag: v1.2.3
+  destination:
+    server: https://192.168.49.2
+    namespace: staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: petclinic-dev
+  namespace: dev
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/simpleHuy/petclinic-helm
+    targetRevision: main
+    path: .
+    helm:
+      values: |
+        {{- toYaml .Values | nindent 8 }}
+        global:
+          imageTag: latest
+  destination:
+    server: https://192.168.49.2
+    namespace: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -1,0 +1,64 @@
+services:
+  - name: admin-server
+    containerName: admin-server
+    image: sciderus/spring-petclinic-admin-server
+    tag: latest
+    port: 9090
+
+  - name: api-gateway
+    containerName: api-gateway
+    image: sciderus/spring-petclinic-api-gateway
+    tag: latest
+    port: 8080
+
+  - name: config-server
+    containerName: config-server
+    image: sciderus/spring-petclinic-config-server
+    tag: latest
+    port: 8888
+
+  - name: customers-service
+    containerName: customers-service
+    image: sciderus/spring-petclinic-customers-service
+    tag: latest
+    port: 8081
+
+  - name: discovery-server
+    containerName: discovery-server
+    image: sciderus/spring-petclinic-discovery-server
+    tag: latest
+    port: 8761
+
+  - name: genai-service
+    containerName: genai-service
+    image: sciderus/spring-petclinic-genai-service
+    tag: latest
+    port: 8082
+
+  - name: vets-service
+    containerName: vets-service
+    image: sciderus/spring-petclinic-vets-service
+    tag: latest
+    port: 8083
+
+  - name: visits-service
+    containerName: visits-service
+    image: sciderus/spring-petclinic-visits-service
+    tag: latest
+    port: 8084
+
+ingress:
+  enabled: true
+  hosts:
+    - host: gateway.petclinic.local
+      serviceName: api-gateway
+      servicePort: 8080
+    - host: discovery.petclinic.local
+      serviceName: discovery-server
+      servicePort: 8761
+    - host: config.petclinic.local
+      serviceName: config-server
+      servicePort: 8888
+    - host: admin.petclinic.local
+      serviceName: admin-server
+      servicePort: 9090
