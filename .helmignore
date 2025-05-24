@@ -1,0 +1,3 @@
+argocd-*.yaml
+README.md
+.gitignore
