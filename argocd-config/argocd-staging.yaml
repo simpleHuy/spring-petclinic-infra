@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/simpleHuy/petclinic-helm
+    repoURL: https://github.com/simpleHuy/spring-petclinic-infra
     targetRevision: {{VERSION}}
     path: .
     helm:
