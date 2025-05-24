@@ -14,9 +14,18 @@ spec:
         app: {{ .name }}
     spec:
       containers:
-        - name: {{ .name }}
+        - name: {{ .containerName }}
           image: {{ .image }}:{{ .tag }}
           ports:
             - containerPort: {{ .port }}
+          env:
+            - name: SPRING_BOOT_ADMIN_CLIENT_INSTANCE_PREFER_IP
+              value: "false"
+            - name: SPRING_BOOT_ADMIN_CLIENT_INSTANCE_SERVICE_HOST
+              value: "{{ .name }}"
+            - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
+              value: "false"
+            - name: EUREKA_INSTANCE_HOSTNAME
+              value: "{{ .name }}"
 ---
 {{- end }}
